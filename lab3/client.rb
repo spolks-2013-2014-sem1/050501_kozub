@@ -1,22 +1,27 @@
 require 'socket'
 require '../libs/NET_UTILS.rb'
 
-hostname = ARGV[0].nil? ? 'localhost' : ARGV[0]
-port = ARGV[1].nil? ? 4455 : ARGV[1]
-filename = ARGV[2].nil? ? '../out84mb.pdf' : ARGV[2]
-BUFFER_SIZE = 1024 * 1024
+hostname = ARGV[0] || '127.0.0.1'
+port = ARGV[1] || 4455
+filename = ARGV[2] || '../out84mb.pdf'
+BUFFER_SIZE = 10
 
 socket = NET_UTILS::TCPClient.new(port, hostname)
-begin
-file = File.open(filename, 'w')
 
-  while data = socket.read(BUFFER_SIZE)
+begin
+  file = File.open(filename, 'w')
+
+  while data = socket.read(BUFFER_SIZE) do
       file.write(data)
   end
   
 rescue
   puts "File transfer failed!"
-  file.close
   File.delete(filename)
-  raise
+rescue Interrupt
+  puts puts "\nFile transfer was interrupted by user."
+  File.delete(filename)
+ensure
+  file.close
+  socket.close
 end
