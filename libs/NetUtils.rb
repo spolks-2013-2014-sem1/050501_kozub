@@ -28,4 +28,27 @@ module NetUtils
     end
   end
   
+  class UDPServer < Socket
+    def initialize(port, hostname)
+      super(AF_INET, SOCK_DGRAM, 0)
+      setsockopt(SOL_SOCKET, SO_REUSEADDR, true)
+      sockaddr = Socket.sockaddr_in(port, hostname)
+      bind(sockaddr)
+    end
+  end
+  
+  class UDPClient < Socket
+    def initialize(port, hostname)
+      super(AF_INET, SOCK_DGRAM, 0)
+      setsockopt(SOL_SOCKET, SO_REUSEADDR, true)
+      sockaddr = Socket.sockaddr_in(port, hostname)
+      begin
+        connect(sockaddr)
+      rescue
+        $stdout.puts "Connection error."
+        exit
+      end
+    end
+  end
+  
 end
