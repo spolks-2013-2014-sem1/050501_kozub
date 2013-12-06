@@ -3,7 +3,7 @@ Simple TCPServer.
 USAGE:
   $ ruby server.rb [hostname] [port]
   
-hostname - specifies hostname for server (default - localhost)
+hostname - specifies hostname for server (default - 127.0.0.1)
 port - specifies port for server (default - 4455)
 
 RUNNING:
