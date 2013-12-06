@@ -8,6 +8,6 @@ port - specifies port for server (default - 4455)
 
 RUNNING:
   Try start server in one terminal window and start ncat in another.
-  E.g. $ ncat localhost 4455
+  E.g. $ ncat 127.0.0.1 4455
   Type smth in ncat and server will print it.
   TIP: Type 'quit' (no quotes) to shutdown the server.
