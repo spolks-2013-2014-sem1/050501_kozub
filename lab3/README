@@ -11,5 +11,5 @@ filename - specifies file to send (recieve)
 RUNNING:
   Try start server in one terminal window and start client in another.
   Type this:
-  $ ruby server.rb localhost 4455 ./input.pdf
-  # ruby client.rb localhost 4455 ./output.pdf
+  $ ruby server.rb 127.0.0.1 4455 ./input.pdf
+  # ruby client.rb 127.0.0.1 4455 ./output.pdf
