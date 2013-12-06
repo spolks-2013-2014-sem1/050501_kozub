@@ -1,0 +1,16 @@
+Parallel server - multiple clients. Transfer file from client to server. Choose between TCP and UDP protocols.
+
+USAGE:
+  $ ruby server.rb hostname port filename protocol
+  $ ruby client.rb hostname port filename protocol
+  
+hostname - specifies hostname for server
+port - specifies port for accept connections
+filename - specifies file to send (recieve)
+protocol - specifies protocol to work with
+
+RUNNING:
+  Try start server in one terminal window and start client in another.
+  Type this:
+  $ ruby server.rb 127.0.0.1 4455 ../output.pdf udp
+  # ruby client.rb 127.0.0.1 4455 ../input.pdf udp
