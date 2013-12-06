@@ -12,13 +12,20 @@ socket.bind(sockaddr)
 puts "Server is running on #{hostname}:#{port}. Awaiting connections."
 socket.listen(5)
 
-client_fd, client_addrinfo = socket.sysaccept
+begin
+  client_fd, client_addrinfo = socket.sysaccept
+rescue SystemExit, Interrupt => e
+  puts "\nServer is shutting down."
+  socket.close
+  exit
+end
+
 client_socket = Socket.for_fd(client_fd)
 
 loop do
   begin
     command = client_socket.gets
-    if command.chomp == "quit" || command.nil?
+    if command.nil? || command.chomp == "quit"
       puts "Server is shutting down."
       client_socket.close
       socket.close
@@ -28,10 +35,10 @@ loop do
       client_socket.puts command
     end
   
-  rescue
-    puts "Server is shutting down."
+  rescue SystemExit, Interrupt => e
+    puts "\nServer is shutting down."
     client_socket.close
     socket.close
-    break
+    exit
   end
 end
