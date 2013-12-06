@@ -3,8 +3,8 @@ Simple TCPServer.
 USAGE:
   $ ruby server.rb [hostname] [port]
   
-hostname (optional parameter) - specifies hostname for server (default - localhost)
-port (optional parameter) - specifies port for server (default - 4455)
+hostname - specifies hostname for server (default - localhost)
+port - specifies port for server (default - 4455)
 
 RUNNING:
   Try start server in one terminal window and start ncat in another.
