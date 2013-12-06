@@ -11,12 +11,7 @@ OOB_BUFFER_SIZE = 1
 bytes_sent = 0
 CONNECTION_TIMEOUT = 10
 
-#socket = NetUtils::TCPClient.new(port, hostname)
-socket = Socket.new(AF_INET, SOCK_STREAM, 0)
-socket.setsockopt(SOL_SOCKET, SO_REUSEADDR, true)
-socket.setsockopt(:SOCKET, SO_OOBINLINE, true)
-socket.connect(Socket.sockaddr_in(port, hostname))
-
+socket = NetUtils::TCPClient.new(port, hostname)
 
 File.open(filename, 'r') do |file|
   puts "File transfer started."
