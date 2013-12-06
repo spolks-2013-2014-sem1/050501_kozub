@@ -1,0 +1,15 @@
+Serial TCPServer and simple TCPClient. Transfer file from client to server.
+
+USAGE:
+  $ ruby server.rb hostname port filename
+  $ ruby client.rb hostname port filename
+  
+hostname - specifies hostname for server
+port - specifies port for accept connections
+filename - specifies file to send (recieve)
+
+RUNNING:
+  Try start server in one terminal window and start client in another.
+  Type this:
+  $ ruby server.rb 127.0.0.1 4455 ../output.pdf
+  # ruby client.rb 127.0.0.1 4455 ../input.pdf
